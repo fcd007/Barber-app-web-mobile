@@ -30,42 +30,6 @@ export const Content = styled.div`
             margin-bottom: 24px;
         }
 
-        input {
-            font-size: 16px;
-            color: #f4ede8;
-            background: #232129;
-            border-radius: 10px;
-            border: 2px solid #232129;
-            padding: 16px;
-            width: 100%;
-
-            & + input {
-                margin-top: 8px;
-            }
-        }
-
-        button {
-            background: #ff9000;
-            color: #312e38;
-            
-            font-weight: 500;
-
-            border-radius: 10px;
-            border: 0;
-            
-            margin-top: 16px;
-            padding: 0 16px;
-            height: 56px;
-
-            width: 100%;
-
-            transition: background-color 0.2s;
-
-            &:hover {
-                background: ${ shade(0.2, '#ff9000') };
-            }
-        }
-
         a {
             color: #f4ede8;
 
@@ -91,7 +55,7 @@ export const Content = styled.div`
             align-items: center;
 
             svg {
-                margin-:right: 16px;
+                margin-right: 16px;
             }
 
             transition: color 0.2s;
