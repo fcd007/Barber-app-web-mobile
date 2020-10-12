@@ -28,7 +28,7 @@ export default class CreateAppointments1590243619161 implements MigrationInterfa
               default: 'now()',
             },
             {
-              name: 'create_up',
+              name: 'update_at',
               type: 'timestamp',
               default: 'now()',
             },

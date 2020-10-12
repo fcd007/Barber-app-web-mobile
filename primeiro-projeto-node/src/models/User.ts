@@ -29,7 +29,7 @@ class User {
   create_at: Date;
 
   @UpdateDateColumn()
-  create_up: Date;
+  update_at: Date;
 
 }
 
