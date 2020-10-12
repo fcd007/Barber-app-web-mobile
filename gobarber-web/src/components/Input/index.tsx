@@ -7,7 +7,6 @@ import React,
     useCallback 
 } from 'react';
 
-
 import { Container, Error } from './styles';
 import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
