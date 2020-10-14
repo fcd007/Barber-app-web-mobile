@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import styled, { css } from 'styled-components';
 
-import Tooltip from '../../tools/Tooltip';
+import Tooltip from '../Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
