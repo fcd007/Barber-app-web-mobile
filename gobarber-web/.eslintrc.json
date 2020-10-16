@@ -28,10 +28,12 @@
     "class-methods-use-this": "off",
     "@typescript-eslint/no-unsed-vars": "off",
     "@typescript-eslint/camelcase": "off",
-    // "@typescript-eslint/no-unsed-vars": ["error", {
-    //   "argsIgnorePattern":"_",
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "@typescript-eslint/no-unsed-vars": ["error", {
+      "argsIgnorePattern":"_",
 
-    // }],
+    }],
     "import/extensions": [
       "error",
       "ignorePackages",

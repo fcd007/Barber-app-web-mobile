@@ -1,10 +1,11 @@
+/* eslint-disable import/extensions */
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import ToastContainer from '../components/ToastContainer';
 
 interface ToastContext {
   addToast(message: Omit<ToastMessage, 'id'>): void;
-  removeToast(): void;
+  removeToast(id:string): void;
 }
 
 export interface ToastMessage {
@@ -16,12 +17,11 @@ export interface ToastMessage {
 
 const ToastContext = createContext<ToastContext>({} as ToastContext);
 
-const [messages, setMessages] = useState<ToastMessage[]>([]);
-
 const ToastProvider: React.FC = ({ children }) => {
+  const [messages, setMessages] = useState<ToastMessage[]>([]);
   const addToast = useCallback(
     ({ type, title, description }: Omit<ToastMessage, 'id'>) => {
-      const id = uuid();
+      const id = uuidv4();
 
       const toast = {
         id,
@@ -29,13 +29,15 @@ const ToastProvider: React.FC = ({ children }) => {
         title,
         description,
       };
-
+      // return state old and function 
       setMessages(state => [...state, toast]);
     },
     [],
   );
 
-  const removeToast = useCallback(() => {}, []);
+  const removeToast = useCallback((id: string) => {
+    setMessages(state => state.filter(message => message.id !== id ))
+  }, []);
 
   return (
     <ToastContext.Provider

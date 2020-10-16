@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
@@ -54,12 +53,12 @@ const SignIn: React.FC = () => {
         }
 
         addToast({
-          type: 'error',
+          type: 'success',
           title: 'Erro na autenticação',
           description: 'Ocorreu um erro ao fazer login, verificar credenciais',
         });
       }
-    },
+    },adcomponentetoast and 
     [signIn, addToast],
   );
 
