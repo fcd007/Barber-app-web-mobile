@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
@@ -8,20 +9,20 @@ interface ContainerProps {
 
 const toastType = {
   info: css`
-    background: #ebf8ff;
+    background: #cce5ff;
     color: #3172b7;
   `,
   success: css`
-    background: #e6fffa;
+    background: #d4edda;
     color: #2e656a;
   `,
   error: css`
-    background: #faeeee;
+    background: #f8d7da;
     color: #c53030;
   `,
 };
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled(animated.div)<ContainerProps>`
   width: 360px;
 
   position: relative;
