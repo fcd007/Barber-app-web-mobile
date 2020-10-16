@@ -5,6 +5,9 @@ import * as Yup from 'yup';
 
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+
+import { Link } from 'react-router-dom';
+
 import { Container, Content, Background } from './styles';
 
 import getValidationError from '../../utils/getValidationErros';
@@ -61,10 +64,10 @@ const SignUp: React.FC = () => {
           <Button type="submit">Cadastrar</Button>
         </Form>
 
-        <a href="#top">
+        <Link to="/">
           <FiArrowLeft />
           Voltar para logon
-        </a>
+        </Link>
       </Content>
     </Container>
   );
