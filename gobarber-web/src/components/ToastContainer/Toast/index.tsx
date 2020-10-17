@@ -47,7 +47,7 @@ const Toast: React.FC<ToastMessageProps> = ({ message, style }) => {
       </div>
 
       <button onClick={() => removeToast(message.id)} type="button">
-        <FiXCircle size={18} />
+        <FiXCircle size={20} />
       </button>
     </Container>
   );
