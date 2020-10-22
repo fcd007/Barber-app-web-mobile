@@ -57,10 +57,15 @@ const SignIn: React.FC = () => {
                             <Input name="email"icon="mail" placeholder="E-mail" />
                             
                             <Input name="senha" icon="lock" placeholder="Digite sua senha" />
-
-                            <Button onPress={() => { formRef.current?.submitForm(); }}> Entrar </Button>
                         </Form>
-
+                        
+                        <Button 
+                            onPress={() => { 
+                                formRef.current?.submitForm(); 
+                            }}
+                            > Entrar 
+                        </Button>
+                       
                         <ForgotPassword onPress={() => {}}>
                             <ForgotPasswordText>
                                 Esqueci minha senha

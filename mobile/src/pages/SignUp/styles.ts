@@ -37,7 +37,7 @@ export const BackToSignIn = styled.TouchableOpacity`
 
 export const BackToSignInText = styled.Text`
     font-family: 'RobotoSlab-Regular';
-    font-size: 18px;    
+    font-size: 20px;    
     color: #f4ede8;
 
     margin-left: 16px;

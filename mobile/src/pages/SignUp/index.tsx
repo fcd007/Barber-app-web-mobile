@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import { From }
+import { Form } from '@unform/mobile';
+import { FormHandles } from '@unform/core';
+
 import { 
         Image, 
         View, 
@@ -23,6 +25,7 @@ import {
     } from './styles';
 
 const SignUp: React.FC = () => {
+    const formRef = useRef<FormHandles>(null);
     const navigation = useNavigation();
 
     return (
@@ -42,13 +45,22 @@ const SignUp: React.FC = () => {
                         <View>
                             <Title> Criar sua conta</Title>
                         </View>
-
-                        <Input name="name"icon="user" placeholder="Digite seu nome" />
-                        <Input name="email" icon="mail" placeholder="Digite seu e-mail" />
-                        <Input name="senha" icon="lock" placeholder="Digite sua senha" />
-
-                        <Button onPress={() => {}}> Cadastrar </Button>
-
+                        <Form ref={formRef} 
+                            onSubmit={(data) =>{
+                                console.log(data)
+                            }}
+                        >
+                            <Input name="name"icon="user" placeholder="Digite seu nome" />
+                            <Input name="email" icon="mail" placeholder="Digite seu e-mail" />
+                            <Input name="senha" icon="lock" placeholder="Digite sua senha" />
+                        </Form>  
+                        <Button 
+                            onPress={() => 
+                                formRef.current?.submitForm()}
+                            > 
+                            Cadastrar 
+                        </Button>
+                        
                     </Container>
                 </ScrollView>
             </KeyboardAvoidingView>
