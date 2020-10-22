@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
+import { Form } from '@unform/mobile';
+import { FormHandles } from '@unform/core';
+
 import { 
         Image, 
         View, 
@@ -23,6 +27,13 @@ import {
     } from './styles';
 
 const SignIn: React.FC = () => {
+    const navigation = useNavigation();
+    const formRef = useRef<FormHandles>(null);
+
+    const handleSignIn = useCallback((data: object) => {
+        console.log(data);
+    },[]);
+
     return (
         <>
             <KeyboardAvoidingView 
@@ -40,11 +51,21 @@ const SignIn: React.FC = () => {
                         <View>
                             <Title> Faça seu logon</Title>
                         </View>
+                        
+                        <Form ref={formRef} onSubmit={ handleSignIn }>
+                            <Input name="email"icon="mail" placeholder="E-mail" />
+                            
+                            <Input name="senha" icon="lock" placeholder="Digite sua senha" />
 
-                        <Input name="email"icon="mail" placeholder="E-mail" />
-                        <Input name="senha" icon="lock" placeholder="Dgite sua senha" />
+                            <Button 
+                                onPress={() => {
+                                    formRef.current?.submitForm();
+                                }}
+                            > 
+                                Entrar
+                            </Button>
+                        </Form>
 
-                        <Button onPress={() => {}}> Entrar </Button>
                         <ForgotPassword onPress={() => {}}>
                             <ForgotPasswordText>
                                 Esqueci minha senha
@@ -55,7 +76,7 @@ const SignIn: React.FC = () => {
                 </ScrollView>
             </KeyboardAvoidingView>
 
-            <CreatAccountButton onPress={() => {}} >
+            <CreatAccountButton onPress={() => navigation.navigate('SignUp')} >
                 <Icon name="log-in" size={ 20 } color="#ff9000" />
                 <CreatAccountButtonText>
                     Criar uma conta

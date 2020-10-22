@@ -13,4 +13,5 @@ const App: React.FC = () => (
         </View>
     </NavigationContainer>
 );
+
 export default App;
