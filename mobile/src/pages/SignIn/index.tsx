@@ -1,16 +1,17 @@
 import React, { useCallback, useRef } from 'react';
+
+import { 
+    Image, 
+    View, 
+    ScrollView,
+    KeyboardAvoidingView, 
+    Platform
+    
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
-
-import { 
-        Image, 
-        View, 
-        ScrollView,
-        KeyboardAvoidingView, 
-        Platform
-    } from 'react-native';
 
 import Input from '../../components/Input/';
 import Button from '../../components/Button/';
@@ -37,7 +38,7 @@ const SignIn: React.FC = () => {
     return (
         <>
             <KeyboardAvoidingView 
-                style={{flex: 1}}
+                style={{ flex: 1 }}
                 behavior={ Platform.OS === 'ios' ? 'padding': undefined }
                 enabled
             >
@@ -52,18 +53,12 @@ const SignIn: React.FC = () => {
                             <Title> Faça seu logon</Title>
                         </View>
                         
-                        <Form ref={formRef} onSubmit={ handleSignIn }>
+                        <Form ref={formRef} onSubmit={handleSignIn}>
                             <Input name="email"icon="mail" placeholder="E-mail" />
                             
                             <Input name="senha" icon="lock" placeholder="Digite sua senha" />
 
-                            <Button 
-                                onPress={() => {
-                                    formRef.current?.submitForm();
-                                }}
-                            > 
-                                Entrar
-                            </Button>
+                            <Button onPress={() => { formRef.current?.submitForm(); }}> Entrar </Button>
                         </Form>
 
                         <ForgotPassword onPress={() => {}}>
@@ -78,12 +73,10 @@ const SignIn: React.FC = () => {
 
             <CreatAccountButton onPress={() => navigation.navigate('SignUp')} >
                 <Icon name="log-in" size={ 20 } color="#ff9000" />
-                <CreatAccountButtonText>
-                    Criar uma conta
-                </CreatAccountButtonText>
+                <CreatAccountButtonText> Criar uma conta </CreatAccountButtonText>
             </CreatAccountButton>
         </>
     );
-}
+};
 
 export default SignIn;
