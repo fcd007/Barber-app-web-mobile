@@ -9,7 +9,8 @@ import {
         View, 
         ScrollView,
         KeyboardAvoidingView, 
-        Platform
+        Platform,
+        TextInput,
     } from 'react-native';
 
 import Input from '../../components/Input/';
@@ -26,6 +27,11 @@ import {
 
 const SignUp: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
+
+    const emailInputRef = useRef<TextInput>(null);
+
+    const passwordInputRef = useRef<TextInput>(null);
+
     const navigation = useNavigation();
 
     return (
@@ -50,9 +56,33 @@ const SignUp: React.FC = () => {
                                 console.log(data)
                             }}
                         >
-                            <Input name="name"icon="user" placeholder="Digite seu nome" />
-                            <Input name="email" icon="mail" placeholder="Digite seu e-mail" />
-                            <Input name="senha" icon="lock" placeholder="Digite sua senha" />
+                            <Input 
+                                autoCapitalize="words" 
+                                name="name"icon="user" 
+                                placeholder="Digite seu nome" 
+                                returnKeyType="next"
+                            />
+
+                            <Input 
+                                ref={emailInputRef}
+                                keyboardType="email-address" 
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                name="email" icon="mail" 
+                                placeholder="Digite seu e-mail" 
+                                returnKeyType="next"
+                                emailInputRef.current?.focus();
+                            />
+
+                            <Input  
+                                ref={passwordInputRef}
+                                secureTextEntry
+                                name="senha" 
+                                icon="lock" 
+                                placeholder="Digite sua senha"
+                                textContentType="newPassword"
+                                returnKeyType="send"
+                            />
                         </Form>  
                         <Button 
                             onPress={() => 
