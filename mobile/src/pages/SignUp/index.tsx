@@ -71,7 +71,7 @@ const SignUp: React.FC = () => {
                                 name="email" icon="mail" 
                                 placeholder="Digite seu e-mail" 
                                 returnKeyType="next"
-                                emailInputRef.current?.focus();
+                                
                             />
 
                             <Input  

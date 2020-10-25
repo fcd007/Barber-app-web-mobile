@@ -63,7 +63,7 @@ const SignIn: React.FC = () => {
                                 icon="mail" 
                                 placeholder="E-mail" 
                                 returnKeyType="next"
-                                
+                                onSubmitEditing={() => {}}
                             />
                             
                             <Input 
@@ -73,6 +73,9 @@ const SignIn: React.FC = () => {
                                 placeholder="Digite sua senha" 
                                 secureTextEntry
                                 returnKeyType="send"
+                                onSubmitEditing={() => {
+                                    formRef.current?.submitForm();
+                                }}
                             />
                         </Form>
                         
