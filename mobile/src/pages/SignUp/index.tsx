@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
@@ -26,13 +26,18 @@ import {
     } from './styles';
 
 const SignUp: React.FC = () => {
+    const navigation = useNavigation();
+
     const formRef = useRef<FormHandles>(null);
 
     const emailInputRef = useRef<TextInput>(null);
 
     const passwordInputRef = useRef<TextInput>(null);
 
-    const navigation = useNavigation();
+    const handleSignUp = useCallback((data: object) => {
+        console.log(data);
+    },[]);
+
 
     return (
         <>
@@ -51,10 +56,7 @@ const SignUp: React.FC = () => {
                         <View>
                             <Title> Criar sua conta</Title>
                         </View>
-                        <Form ref={formRef} 
-                            onSubmit={(data) =>{
-                                console.log(data)
-                            }}
+                        <Form ref={formRef} onSubmit={handleSignUp}
                         >
                             <Input 
                                 autoCapitalize="words" 
@@ -89,6 +91,9 @@ const SignUp: React.FC = () => {
                                 placeholder="Digite sua senha"
                                 textContentType="newPassword"
                                 returnKeyType="send"
+                                onSubmitEditing={() => {
+                                    formRef.current?.submitForm();
+                                }}
                             />
                         </Form>  
                         <Button onPress={() => formRef.current?.submitForm()}> 
