@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-unused-expressions */
 import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
@@ -77,6 +75,7 @@ const SignIn: React.FC = () => {
       <Content>
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber Web" />
+
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>
 
