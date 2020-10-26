@@ -58,9 +58,13 @@ const SignUp: React.FC = () => {
                         >
                             <Input 
                                 autoCapitalize="words" 
-                                name="name"icon="user" 
+                                name="name"
+                                icon="user" 
                                 placeholder="Digite seu nome" 
                                 returnKeyType="next"
+                                onSubmitEditing={() => {
+                                    emailInputRef.current?.focus();
+                                }}
                             />
 
                             <Input 
@@ -68,10 +72,13 @@ const SignUp: React.FC = () => {
                                 keyboardType="email-address" 
                                 autoCorrect={false}
                                 autoCapitalize="none"
-                                name="email" icon="mail" 
+                                name="email" 
+                                icon="mail"
                                 placeholder="Digite seu e-mail" 
                                 returnKeyType="next"
-                                
+                                onSubmitEditing={() => {
+                                    passwordInputRef.current?.focus();
+                                }}
                             />
 
                             <Input  
@@ -84,10 +91,7 @@ const SignUp: React.FC = () => {
                                 returnKeyType="send"
                             />
                         </Form>  
-                        <Button 
-                            onPress={() => 
-                                formRef.current?.submitForm()}
-                            > 
+                        <Button onPress={() => formRef.current?.submitForm()}> 
                             Cadastrar 
                         </Button>
                         

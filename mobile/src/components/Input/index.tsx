@@ -17,15 +17,20 @@ interface InputRef {
     focus(): void;
 }
 
-const Input: React.ForwardRefRenderFunction<InputRef , InputProps> = ({ name, icon, ...rest }, ref) => {
+const Input: React.ForwardRefRenderFunction<InputRef , InputProps> = (
+    { name, icon, ...rest }, 
+    ref,
+) => {
+
     const inputElementRef = useRef<any>(null);
+
     const { registerField, defaultValue = '', fieldName, error } = useField(name);
     const inputValueRef = useRef<InputValueReference>({ value: defaultValue});
 
     useImperativeHandle(ref, () => ({
         focus() {
             inputElementRef.current.focus();
-        }
+        },
     }));
 
     useEffect(() => {
