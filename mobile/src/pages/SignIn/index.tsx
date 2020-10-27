@@ -10,7 +10,7 @@ import {
     Alert,
 } from 'react-native';
 
-import Yup from 'yup';
+import * as Yup from 'yup';
 
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';

@@ -25,13 +25,13 @@ export const Container = styled.View<ContainerProps>`
         props.isErrored && 
         css`
             border-color: #c53030;
-        `}
+    `}
 
     ${(props) => 
         props.isFocused && 
         css`
             border-color: #ff9000;
-        `}
+    `}
 `;
 
 export const TextInput = styled.TextInput`
