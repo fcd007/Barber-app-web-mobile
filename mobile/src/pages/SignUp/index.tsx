@@ -12,13 +12,14 @@ import {
 
 import * as Yup from 'yup';
 
+import api from '../../services/api';
+
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 
 import getValidationError from '../../utils/getValidationErros';
-
 
 import Input from '../../components/Input/';
 import Button from '../../components/Button/';
@@ -63,15 +64,15 @@ const SignUp: React.FC = () => {
               abortEarly: false,
             });
     
-            // await api.post('/users', data);
-    
-            // addToast({
-            //   type: 'success',
-            //   title: 'Cadastro realizado com sucesso!',
-            //   description: 'Acesse área de logon, com seu usuário e senha.',
-            // });
-    
-            // history.push('/');
+            await api.post('/users', data);
+
+            Alert.alert(
+                'Cadastro realizado com sucesso', 
+                'Você já pode realizar o login na aplicação.'
+            );
+
+            //realizando navegação para tela SignIn
+            navigation.navigate('SignIn');
           } catch (err) {
             if (err instanceof Yup.ValidationError) {
               const errors = getValidationError(err);
@@ -86,7 +87,7 @@ const SignUp: React.FC = () => {
                 'Ocorreu um erro ao fazer o cadastro, tente novamente mais tarde',
                 );
           }
-        }, []);
+        }, [navigation]);
 
     return (
         <>

@@ -12,10 +12,14 @@ import {
 
 import * as Yup from 'yup';
 
+import api from '../../services/api';
+
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+
+import { useAuth } from '../../hooks/auth';
 
 import getValidationError from '../../utils/getValidationErros';
 
@@ -39,9 +43,14 @@ interface SignDataForm {
 }
 
 const SignIn: React.FC = () => {
-    const navigation = useNavigation();
     const formRef = useRef<FormHandles>(null);
     const passwordInputRef = useRef<TextInput>(null);
+
+    const navigation = useNavigation();
+
+    const { signIn, user } = useAuth();
+
+    console.log(user);
 
     const handleSignIn = useCallback(
         async (data: SignDataForm) => {
@@ -58,12 +67,11 @@ const SignIn: React.FC = () => {
               abortEarly: false,
             });
     
-            // await signIn({
-            //   email: data.email,
-            //   password: data.password,
-            // });
+            await signIn({
+              email: data.email,
+              password: data.password,
+            });
     
-            // history.push('/dashboard');
           } catch (err) {
             if (err instanceof Yup.ValidationError) {
               const errors = getValidationError(err);
