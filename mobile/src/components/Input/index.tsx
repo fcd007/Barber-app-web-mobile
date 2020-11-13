@@ -10,7 +10,11 @@ import React, {
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
-import { Container, TextInput, Icon }  from './styles';
+import { 
+    Container, 
+    TextInput, 
+    Icon 
+} from './styles';
 
 interface InputProps extends TextInputProps {
     name: string;
@@ -68,6 +72,7 @@ const Input: React.ForwardRefRenderFunction<InputRef , InputProps> = (
             }
         });
     },[fieldName, registerField]);
+    
     return (
         <Container isFocused={isFocused} isErrored={!!error}>
             <Icon name={ icon } size={ 20 } color={isFocused || isFilled ? '#ff9000' : '#666360'}/>
