@@ -62,5 +62,5 @@ Android project open two terminals run:
 ### `yarn start` and `yarn android`
 
 IOS project open one terminal run:
-### `yarn ios` and
+### `yarn ios`
 Run App Mobile IOS.<br />
