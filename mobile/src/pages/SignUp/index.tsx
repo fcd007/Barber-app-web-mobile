@@ -1,42 +1,34 @@
 import React, { useRef, useCallback } from 'react';
-
-import { 
-        Image, 
-        View, 
-        ScrollView,
-        KeyboardAvoidingView, 
-        Platform,
-        TextInput,
-        Alert,
-    } from 'react-native';
-
-import * as Yup from 'yup';
-
-import api from '../../services/api';
-
+import {
+  Image,
+  View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  Alert,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
-import getValidationError from '../../utils/getValidationErros';
+import api from '../../services/api';
 
-import Input from '../../components/Input/';
-import Button from '../../components/Button/';
+import getValidationErrors from '../../utils/getValidationErros';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.png';
 
-import { 
-        Container, 
-        Title, 
-        BackToSignIn, 
-        BackToSignInText 
-    } from './styles';
+import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
 
-interface SignUpData {
-    name:string;
-    email:string;
-    password:string;
+interface SignUpFormData {
+  name: string;
+  email: string;
+  password: string;
 }
 
 const SignUp: React.FC = () => {
@@ -49,7 +41,7 @@ const SignUp: React.FC = () => {
     const passwordInputRef = useRef<TextInput>(null);
 
     const handleSignUp = useCallback(
-        async (data: SignUpData) => {
+        async (data: SignUpFormData) => {
           try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({
@@ -59,26 +51,27 @@ const SignUp: React.FC = () => {
                 .email('Digite um e-mail válido'),
               password: Yup.string().min(8, 'Senha com mínimo de 8 caracteres'),
             });
-    
+
             await schema.validate(data, {
               abortEarly: false,
             });
-    
+
             await api.post('/users', data);
 
             Alert.alert(
-                'Cadastro realizado com sucesso', 
+                'Cadastro realizado com sucesso',
                 'Você já pode realizar o login na aplicação.'
             );
 
-            //realizando navegação para tela SignIn
-            navigation.navigate('SignIn');
+            //realizando navegação para tela inicial
+            navigation.goBack();
           } catch (err) {
             if (err instanceof Yup.ValidationError) {
-              const errors = getValidationError(err);
-    
+              const errors = getValidationErrors(err);
+              console.log(errors)
+
               formRef.current?.setErrors(errors);
-              
+
               return;
             }
 
@@ -87,11 +80,13 @@ const SignUp: React.FC = () => {
                 'Ocorreu um erro ao fazer o cadastro, tente novamente mais tarde',
                 );
           }
-        }, [navigation]);
+        },
+        [navigation],
+      );
 
     return (
         <>
-            <KeyboardAvoidingView 
+            <KeyboardAvoidingView
                 style={{flex: 1}}
                 behavior={ Platform.OS === 'ios' ? 'padding': undefined }
                 enabled
@@ -102,44 +97,44 @@ const SignUp: React.FC = () => {
                 >
                     <Container>
                         <Image source={ logoImg } />
-                        
+
                         <View>
                             <Title> Criar sua conta</Title>
                         </View>
-                        <Form 
-                            ref={formRef} 
+                        <Form
+                            ref={formRef}
                             onSubmit={handleSignUp}
                         >
-                            <Input 
-                                autoCapitalize="words" 
+                            <Input
+                                autoCapitalize="words"
                                 name="name"
-                                icon="user" 
-                                placeholder="Digite seu nome" 
+                                icon="user"
+                                placeholder="Digite seu nome"
                                 returnKeyType="next"
                                 onSubmitEditing={() => {
                                     emailInputRef.current?.focus();
                                 }}
                             />
 
-                            <Input 
+                            <Input
                                 ref={emailInputRef}
-                                keyboardType="email-address" 
+                                keyboardType="email-address"
                                 autoCorrect={false}
                                 autoCapitalize="none"
-                                name="email" 
+                                name="email"
                                 icon="mail"
-                                placeholder="Digite seu e-mail" 
+                                placeholder="Digite seu e-mail"
                                 returnKeyType="next"
                                 onSubmitEditing={() => {
                                     passwordInputRef.current?.focus();
                                 }}
                             />
 
-                            <Input  
+                            <Input
                                 ref={passwordInputRef}
                                 secureTextEntry
-                                name="password" 
-                                icon="lock" 
+                                name="password"
+                                icon="lock"
                                 placeholder="Digite sua senha"
                                 textContentType="newPassword"
                                 returnKeyType="send"
@@ -147,11 +142,11 @@ const SignUp: React.FC = () => {
                                     formRef.current?.submitForm();
                                 }}
                             />
-                        </Form>  
-                        <Button onPress={() => formRef.current?.submitForm()}> 
-                            Cadastrar 
+                        </Form>
+                        <Button onPress={() => formRef.current?.submitForm()}>
+                            Cadastrar
                         </Button>
-                        
+
                     </Container>
                 </ScrollView>
             </KeyboardAvoidingView>
