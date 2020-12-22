@@ -1,5 +1,5 @@
-import { getCustomRepository } from 'typeorm';
 import { startOfHour } from 'date-fns';
+import { getCustomRepository } from 'typeorm';
 
 import AppError from '@shared/errors/AppError';
 import Appointment from '../infra/typeorm//entities/Appointment';
@@ -28,13 +28,10 @@ class CreateAppointmentService {
     throw new AppError('This appointment os alread booked');
   }
 
-  const appointment = appointmentsRepository.create({
+  const appointment = await appointmentsRepository.create({
     provider_id,
     date: appointmentDate,
   });
-
-  await appointmentsRepository.save(appointment);
-
   return appointment;
   }
 }
