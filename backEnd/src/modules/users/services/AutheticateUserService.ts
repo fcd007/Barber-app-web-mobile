@@ -1,5 +1,6 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { injectable, inject } from 'tsyringe';
 
 //SOLID - using dependency inversion
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
@@ -17,8 +18,12 @@ interface IResponse {
   token: string;
 }
 
+@injectable()
 class AutheticateUserService {
-  constructor ( private usersRepository: IUsersRepository ) { }
+  constructor (
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+    ) { }
 
   public async execute({ email, password }: IRequest): Promise<IResponse>{
 
