@@ -9,13 +9,13 @@ import AppError from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
 
 
-interface Request {
+interface IRequest {
   user_id: string;
   avatarFileName: string;
 }
 
 class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFileName }: Request): Promise<User> {
+  public async execute({ user_id, avatarFileName }: IRequest): Promise<User> {
 
     const usersRepository = getRepository(User);
 
