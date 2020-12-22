@@ -6,7 +6,7 @@
   "password": "docker",
   "database": "gobarberdb",
   "entities": [
-    "./src/modules/**/infra/typeorm/entinties/*.ts"
+    "./src/modules/**/infra/typeorm/entities/*.ts"
   ],
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
