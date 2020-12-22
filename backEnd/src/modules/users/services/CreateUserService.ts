@@ -1,9 +1,8 @@
 import { hash } from 'bcryptjs';
 
-import AppError from '@shared/errors/AppError';
-
+//SOLID - using dependency inversion
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-
+import AppError from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
 
 interface IRequest{
@@ -13,8 +12,7 @@ interface IRequest{
 }
 
 class CreateUserService {
-  constructor ( private usersRepository: IUsersRepository ) {
-  }
+  constructor ( private usersRepository: IUsersRepository ) { }
 
   public async execute({ name , email, password }: IRequest): Promise<User>{
     const checkUserExists = await this.usersRepository.findByEmail(email);
