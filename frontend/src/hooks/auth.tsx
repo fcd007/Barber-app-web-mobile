@@ -5,6 +5,7 @@ interface SignCredentials {
   email: string;
   password: string;
 }
+
 interface AuthContextState {
   user: object;
   signIn(credentials: SignCredentials): Promise<void>;
