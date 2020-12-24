@@ -3,10 +3,10 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./src/",
     "strict": true,
     "strictPropertyInitialization": false,
-    "baseUrl": "./src",
+    "baseUrl": "./src/",
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
@@ -15,10 +15,9 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true
-  },
+  }
 }
