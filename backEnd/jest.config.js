@@ -10,11 +10,7 @@ module.exports = {
   // bail: 0,
 
   // The directory where Jest should store its cached dependency information
-<<<<<<< HEAD
   // cacheDirectory: "/tmp/jest_rs",
-=======
-  // cacheDirectory: "/private/var/folders/34/ptj3h55n1qqdbx836_0cv6zm0000gn/T/jest_dx",
->>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
 
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
@@ -84,11 +80,7 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-<<<<<<< HEAD
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/src/'}),
-=======
-  // moduleNameMapper: {},
->>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -101,11 +93,6 @@ module.exports = {
 
   // A preset that is used as a base for Jest's configuration
   preset: 'ts-jest',
-<<<<<<< HEAD
-
-=======
-
->>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
   // Run tests from one or more projects
   // projects: undefined,
 
@@ -158,7 +145,6 @@ module.exports = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: [
-<<<<<<< HEAD
     "**/*.spec.ts",
     "**/__tests__/**/*.[jt]s?(x)",
     "**/?(*.)+(spec|test).[tj]s?(x)"
@@ -167,17 +153,6 @@ module.exports = {
   // testPathIgnorePatterns: [
   //   "/node_modules/"
   // ],
-=======
-    "**/*.spect.ts",
-    "**/__tests__/**/*.[jt]s?(x)",
-    "**/?(*.)+(spec|test).[tj]s?(x)"
-  ],
-
-  // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    "/node_modules/"
-  ],
->>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
