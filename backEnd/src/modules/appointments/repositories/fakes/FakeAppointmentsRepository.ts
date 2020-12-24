@@ -22,7 +22,10 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }: ICreateAppointmentTDO ): Promise<Appointment>{
     const appointment = new Appointment();
     //atribuindo valores ao appointment
-    Object.assign({ id: uuid(), date, provider_id });
+    appointment.id = uuid();
+    appointment.date = date;
+    appointment.provider_id = provider_id;
+    // Object.assign(user { id: uuid(), date, provider_id });
 
     this.appointments.push(appointment);
 
