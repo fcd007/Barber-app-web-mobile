@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { compilerOptions } = require('./tsconfig.json');
 
-=======
-/*
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/en/configuration.html
- */
->>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
@@ -111,7 +104,7 @@ module.exports = {
 <<<<<<< HEAD
 
 =======
-  
+
 >>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
   // Run tests from one or more projects
   // projects: undefined,

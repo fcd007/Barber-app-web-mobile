@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import CreateAppoitmentService from '@modules/appointments/services/CreateAppointmentService';
 // import FakeAppointmentsRepository from '@modules/appointments/repositories/fakes/FakeAppointmentsRepository';
 
@@ -27,8 +26,3 @@
 test('sum tow numbers', () => {
   expect(1 +2).toBe(3);
 });
-=======
-test('Sum two numbers', () => {
-  expect(1 + 2 ).toBe(3);
-});
->>>>>>> 07a8e3665eed8c90d9631d5477f80a160a1b5b7c
