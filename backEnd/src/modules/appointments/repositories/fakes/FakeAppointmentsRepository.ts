@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { isEqual } from 'date-fns';
 
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointment';
@@ -23,7 +23,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }: ICreateAppointmentTDO ): Promise<Appointment>{
     const appointment = new Appointment();
     //atribuindo valores ao appointment
-    appointment.id = uuid();
+    appointment.id = uuidv4();
     appointment.date = date;
     appointment.provider_id = provider_id;
     // Object.assign(user { id: uuid(), date, provider_id });
