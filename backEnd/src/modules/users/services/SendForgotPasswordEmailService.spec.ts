@@ -6,10 +6,11 @@ import 'reflect-metadata';
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
+import AppError from '@shared/errors/AppError';
 
 //vamos categorizar os testes
 describe('SendForgotPasswordEmail', () => {
-  //test to create new user
+  //test to recover password
   it('Shold be able to recover the password using e-mail', async () => {
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeMailProvider = new FakeMailProvider();
@@ -33,5 +34,21 @@ describe('SendForgotPasswordEmail', () => {
 
     //retorna se a função foi chamada
     expect(sendMail).toHaveBeenCalled();
+  });
+
+  it('Shold be able to recover the password using e-mail', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeMailProvider = new FakeMailProvider();
+
+    const sendForgotPasswordMail = new SendForgotPasswordEmailService(
+      fakeUsersRepository,
+      fakeMailProvider
+    );
+
+    await expect(
+      sendForgotPasswordMail.execute({
+        email: 'johndoe@mail.com',
+    })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

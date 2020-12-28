@@ -1,3 +1,4 @@
+import AppError  from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 
 //SOLID - using dependency inversion
@@ -18,6 +19,11 @@ class SendForgotPasswordEmailService {
   ) {}
 
   public async execute({ email }: IRequest): Promise<void>{
+    const checkUserExistis = await this.usersRepository.findByEmail(email);
+
+    if(!checkUserExistis){
+      throw new AppError('user does not exists.');
+    }
     this.mailProvider.sendMail(email, 'Pedido de recuperação de senha recebido');
  }
 }
