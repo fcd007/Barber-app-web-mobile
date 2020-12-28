@@ -5,12 +5,7 @@ export default class EtherealEmailProvider implements IMailProvider {
   private client: Transporter;
 
   constructor() {
-    nodemailer.createTestAccount((err, account) => {
-      if (err) {
-          console.error('Failed to create a testing account. ' + err.message);
-          return process.exit(1);
-      }
-
+    nodemailer.createTestAccount().then(account => {
       const transporter = nodemailer.createTransport({
         host: account.smtp.host,
         port: account.smtp.port,
@@ -21,13 +16,15 @@ export default class EtherealEmailProvider implements IMailProvider {
           }
         });
 
+        // console.log(account);
         this.client = transporter;
       }
-    )}
+    )};
 
   public async sendMail(to: string, body: string): Promise<void> {
+    console.log(to, body)
     const info = await this.client.sendMail({
-      from: 'Devlopment Dantass <fcd007@hotmail.com>',
+      from: 'Development Dantas <fcd007@hotmail.com>',
         to,
         subject: 'Recuperação de senha ✔',
         text: body
