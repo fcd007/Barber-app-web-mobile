@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-// TDD - RED => FAILURE | GREEN => PASSED | REFATORE
+// TDD - FAILURE | PASSED | REFACTORE
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeUsersTokensRepository from '@modules/users/repositories/fakes/FakeUsersTokensRepository';
 import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
