@@ -21,11 +21,6 @@ export default class CreateUserTokens1609178674922 implements MigrationInterface
               default: 'uuid_generate_v4()',
             },
             {
-              name: 'email',
-              type: 'varchar',
-              isUnique: true,
-            },
-            {
               name: 'user_id',
               type: 'uuid',
             },
