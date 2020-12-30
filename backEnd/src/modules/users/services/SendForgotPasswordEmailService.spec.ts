@@ -3,13 +3,13 @@ import 'reflect-metadata';
 // TDD - RED => FAILURE | GREEN => PASSED | REFATORE
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
-import FakeUsersTokensRepository from '@modules/users/repositories/fakes/FakeUsersTokensRepository';
+import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUsersTokensRepository';
 import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 import AppError from '@shared/errors/AppError';
 
 //criando variáveis globais para criar repositórios
 let fakeUsersRepository: FakeUsersRepository;
-let fakeUserTokensRepository: FakeUsersTokensRepository;
+let fakeUserTokensRepository: FakeUserTokensRepository;
 let fakeMailProvider: FakeMailProvider;
 let sendForgotPasswordEmailService: SendForgotPasswordEmailService;
 
@@ -18,12 +18,12 @@ describe('SendForgotPasswordEmail', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeMailProvider = new FakeMailProvider();
-    fakeUserTokensRepository = new FakeUsersTokensRepository();
+    fakeUserTokensRepository = new FakeUserTokensRepository();
 
     sendForgotPasswordEmailService = new SendForgotPasswordEmailService(
       fakeUsersRepository,
-      fakeUserTokensRepository,
       fakeMailProvider,
+      fakeUserTokensRepository
     );
   });
   //test to recover password
