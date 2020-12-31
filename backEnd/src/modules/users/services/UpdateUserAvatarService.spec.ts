@@ -2,22 +2,22 @@ import 'reflect-metadata';
 
 import AppError from '@shared/errors/AppError';
 
-import FakeProviderAvatar from '@shared/container/providers/StorageProvider/fakes/FakeProviderAvatar';
+import FakeStorageAvatar from '@shared/container/providers/StorageProvider/fakes/FakeProviderAvatar';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import UpdateUserAvatarService from './UpdateUserAvatarService';
 
 let fakeUsersRepository: FakeUsersRepository;
-let fakeProviderAvatar:FakeProviderAvatar;
+let fakeStorageProvider:FakeStorageAvatar;
 let updateUserAvatar: UpdateUserAvatarService;
 //vamos categorizar os testes
 describe('UpdateUserAvatar', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
-    fakeProviderAvatar = new FakeProviderAvatar();
+    fakeStorageProvider = new FakeStorageAvatar();
 
     updateUserAvatar = new UpdateUserAvatarService(
       fakeUsersRepository,
-      fakeProviderAvatar
+      fakeStorageProvider
     );
   });
 
@@ -49,7 +49,7 @@ describe('UpdateUserAvatar', () => {
   //test to create new user - update avatar
   it('Shold delete old avatar when updating new one', async () => {
     //retorna se a função foi chamada
-    const deleteFile = jest.spyOn(fakeProviderAvatar, 'deleteFile');
+    const deleteFile = jest.spyOn(fakeStorageProvider, 'deleteFile');
 
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
