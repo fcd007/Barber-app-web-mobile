@@ -1,10 +1,9 @@
 import 'reflect-metadata';
 
-// import AppError from '@shared/errors/AppError';
-
 import FakeHashProvider  from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import UpdateProfileService from '@modules/users/services/UpdateProfileService';
+import AppError from '@shared/errors/AppError';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider:FakeHashProvider;
@@ -38,4 +37,14 @@ describe('UpdateProfile', () => {
     expect(updateUser.name).toBe('john Duo2');
     expect(updateUser.email).toBe('johnduo2@gmail.com');
   });
+
+  //test to create new user - update avatar
+  it('Shold not be able to update profile from non existing user', async () => {
+    await expect(
+      updateProfile.execute({
+        user_id: '12451555555555',
+        name: 'non-existing-user',
+        email: 'non-existing-user@email.com',
+      })).rejects.toBeInstanceOf(AppError);
+    });
 });
