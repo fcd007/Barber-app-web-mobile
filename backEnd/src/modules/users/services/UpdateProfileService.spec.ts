@@ -38,6 +38,27 @@ describe('UpdateProfile', () => {
     expect(updateUser.email).toBe('johnduo2@gmail.com');
   });
 
+  it('Shold not be able to change to another user email', async () => {
+   await fakeUsersRepository.create({
+      name: 'John Doe',
+      email: 'johndoe@email.com',
+      password: '123456789',
+    });
+
+    const user = await fakeUsersRepository.create({
+      name: 'Teste',
+      email: 'teste@email.com',
+      password: '123456789',
+    });
+
+    await expect(
+      updateProfile.execute({
+        user_id: user.id,
+        name: 'john Duo2',
+        email: 'johndoe@email.com',
+      })).rejects.toBeInstanceOf(AppError);
+  });
+
   //test to create new user - update avatar
   it('Shold not be able to update profile from non existing user', async () => {
     await expect(
