@@ -15,13 +15,11 @@ export default function ensureAuthenticated(
   response: Response,
   next:NextFunction
   ):void {
-    //validação do token JWT
     const authHeader = request.headers.authorization;
 
     if(!authHeader){
       throw new AppError('JWT token is missing', 401);
     }
-
     //Bearer sauidhasudh
     const [, token] = authHeader.split(' ');
 

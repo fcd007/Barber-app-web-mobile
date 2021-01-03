@@ -1,10 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 
 //SOLID - using dependency inversion
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import IHashProvider  from '@modules/users/providers/HashProvider/models/IHashProvider';
-import User from '../infra/typeorm/entities/User';
 import AppError from '@shared/errors/AppError';
+import IHashProvider  from '@modules/users/providers/HashProvider/models/IHashProvider';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+
+import User from '../infra/typeorm/entities/User';
 
 interface IRequest {
   user_id: string;
