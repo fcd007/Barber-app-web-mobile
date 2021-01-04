@@ -17,7 +17,7 @@ type IResponse = Array<{
 }>;
 
 @injectable()
-class ListProviderDayAvailability {
+class ListProviderDayAvailabilityService {
   constructor (
     @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
@@ -34,23 +34,24 @@ class ListProviderDayAvailability {
       day,
       month,
       year,
-    });
+    },
+  );
 
     const hourStart = 8;
 
     const eachHoursArray = Array.from(
-      { length: 10},
+      { length: 10 },
       (_, index) => index + hourStart,
       );
 
       const currentDate = new Date(Date.now());
 
       const availability = eachHoursArray.map(hour => {
-        const hasAppointmentInHour = appointments.find(appointment =>
-          getHours(appointment.date ) === hour,
+        const hasAppointmentInHour = appointments.find(
+          appointment => getHours(appointment.date) === hour,
         );
 
-        const compareDate = new Date( year, month-1, day, hour);
+        const compareDate = new Date(year, month - 1, day, hour);
 
         return {
           hour,
@@ -62,4 +63,4 @@ class ListProviderDayAvailability {
   }
 }
 
-export default ListProviderDayAvailability;
+export default ListProviderDayAvailabilityService;
