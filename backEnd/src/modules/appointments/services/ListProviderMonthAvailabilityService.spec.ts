@@ -21,20 +21,12 @@ describe('ListProviderMonthAvailable', () => {
       date: new Date(2020, 10, 30, 8, 0, 0),
     });
 
-    await fakeAppointmentsRepository.create({
-      provider_id: 'provider_id',
-      date: new Date(2020, 11, 30, 8, 0, 0),
-    });
-
-    await fakeAppointmentsRepository.create({
-      provider_id: 'provider_id',
-      date: new Date(2020, 11, 30, 9, 0, 0),
-    });
-
-    await fakeAppointmentsRepository.create({
-      provider_id: 'provider_id',
-      date: new Date(2020, 11, 31, 10, 0, 0),
-    });
+    for (let index = 8; index < 18; index++) {
+      await fakeAppointmentsRepository.create({
+        provider_id: 'provider_id',
+        date: new Date(2020, 11, 30, index, 0, 0),
+      });
+    }
 
     const availability = await listMonthAvailabilityProviders.execute({
       provider_id: 'provider_id',
@@ -48,7 +40,7 @@ describe('ListProviderMonthAvailable', () => {
       { day: 28, available: true },
       { day: 29, available: true },
       { day: 30, available: false },
-      { day: 31, available: false },
+      { day: 31, available: true },
     ]))
   });
 });
