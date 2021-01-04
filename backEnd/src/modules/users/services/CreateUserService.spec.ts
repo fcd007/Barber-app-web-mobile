@@ -38,10 +38,10 @@ describe('CreateUser', () => {
     });
 
     await expect(
-      createUser.execute({
+        createUser.execute({
         name: 'Claudeilton Dantas',
         email: 'fcd007@hotmail.com',
-        password: '12456789'
+        password: '123123123'
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

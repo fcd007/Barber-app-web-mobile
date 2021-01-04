@@ -58,11 +58,13 @@ class AppointmentsRepository implements IAppointmentsRepository {
   //definindo e implementando o método create com base na interface
   public async create({
     provider_id,
+    user_id,
     date
   }: ICreateAppointmentTDO ): Promise<Appointment>{
     const appointment = new Appointment();
     //atribuindo valores ao appointment
     appointment.id = uuidv4();
+    appointment.user_id = user_id;
     appointment.date = date;
     appointment.provider_id = provider_id;
     // Object.assign(user { id: uuid(), date, provider_id });

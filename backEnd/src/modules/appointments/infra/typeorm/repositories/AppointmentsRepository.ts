@@ -65,8 +65,12 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   //definindo e implementando o método create com base na interface
-  public async create({ provider_id, date }: ICreateAppointmentTDO ): Promise<Appointment>{
-    const appointment = this.ormRepository.create({ provider_id, date });
+  public async create({ provider_id, user_id, date }: ICreateAppointmentTDO ): Promise<Appointment>{
+    const appointment = this.ormRepository.create({
+      provider_id,
+      user_id,
+      date
+    });
     //realizando a operação de save() do typeorm
     await this.ormRepository.save(appointment);
     //retornando o repositório creado
