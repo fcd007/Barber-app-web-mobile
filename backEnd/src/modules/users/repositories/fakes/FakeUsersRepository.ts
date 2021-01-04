@@ -4,6 +4,8 @@ import User from '@modules/users/infra/typeorm/entities/User';
 //fazendo a importação da interface IUserRepository
 import IUsersRepository from '@modules/users/repositories/IUsersRepository'
 import ICreateUsersTDO from '@modules/users/dtos/ICreateUserDTO'
+import IFindProvidersDTO from '@modules/users/dtos/IFindProvidersDTO';
+
 
 class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
@@ -18,6 +20,19 @@ class FakeUsersRepository implements IUsersRepository {
   public async findByEmail(email: string): Promise<User | undefined> {
     const findUser = this.users.find(user => user.email === email);
      return findUser;
+  }
+
+  public async findAllProviders({
+    except_user_id
+  }: IFindProvidersDTO): Promise<User[]> {
+    //usando desestruturação
+    let { users } = this;
+    //removendo com filter o usuário encontrado
+    if(except_user_id) {
+      users = this.users.filter(user => user.id !== except_user_id);
+    }
+
+    return users;
   }
 
   //definindo e implementando o método create com base na interface

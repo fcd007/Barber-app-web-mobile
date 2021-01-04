@@ -1,10 +1,11 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Not } from 'typeorm';
 
 import User from '../entities/User';
 
 //fazendo a importação da interface IUserRepository
 import IUsersRepository from '@modules/users/repositories/IUsersRepository'
 import ICreateUsersTDO from '@modules/users/dtos/ICreateUserDTO'
+import IFindProvidersDTO from '@modules/users/dtos/IFindProvidersDTO';
 
 class UsersRepository implements IUsersRepository {
   //criando uma variável para Repository User
@@ -26,6 +27,24 @@ class UsersRepository implements IUsersRepository {
        where: { email },
      });
      return user;
+  }
+
+  //implementando o método para busca de providers por id
+  public async findAllProviders({
+    except_user_id
+  }: IFindProvidersDTO): Promise<User[]> {
+    let users: User[];
+
+    if(except_user_id) {
+      users = await this.ormRepository.find({
+        where: {
+          id: Not(except_user_id),
+        },
+      });
+    } else {
+      users = await this.ormRepository.find();
+    }
+    return users;
   }
 
   //definindo e implementando o método create com base na interface
