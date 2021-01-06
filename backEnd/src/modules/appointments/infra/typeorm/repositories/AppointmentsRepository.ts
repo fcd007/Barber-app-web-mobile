@@ -15,6 +15,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
   constructor() {
     this.ormRepository = getRepository(Appointment)
   }
+
   public async findByDate(date: Date): Promise<Appointment | undefined>{
     const findAppointment = await this.ormRepository.findOne({
       where: { date: date},
@@ -42,7 +43,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     return appointments;
   }
 
-  public async findAllDayProviders({
+  public async findAllInDayFromProvider({
     provider_id,
     day,
     month,
@@ -65,7 +66,11 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   //definindo e implementando o método create com base na interface
-  public async create({ provider_id, user_id, date }: ICreateAppointmentTDO ): Promise<Appointment>{
+  public async create({
+    provider_id,
+    user_id,
+    date
+  }: ICreateAppointmentTDO ): Promise<Appointment>{
     const appointment = this.ormRepository.create({
       provider_id,
       user_id,
