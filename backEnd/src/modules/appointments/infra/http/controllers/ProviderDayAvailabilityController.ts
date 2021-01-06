@@ -7,7 +7,7 @@ export default class ProviderDayAvailabilityController {
 
   public async index(request: Request, response: Response): Promise<Response> {
     const { provider_id }  = request.params;
-    const { day, month, year } = request.query;
+    const { day, month, year } = request.body;
 
   //carrega o service se precisar de alguma dependência
   const listProvidersDayAvailabilty = container.resolve(

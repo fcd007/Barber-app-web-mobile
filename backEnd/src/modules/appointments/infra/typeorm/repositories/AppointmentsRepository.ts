@@ -1,10 +1,8 @@
 import { getRepository, Repository, Raw } from 'typeorm';
 
 import Appointment from '../entities/Appointment';
-
 //fazendo a importação da interface appointamentsRepositoty
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository'
-
 import ICreateAppointmentTDO from '@modules/appointments/dtos/ICreateAppointmentDTO'
 import IFindAllInMonthProviderDTO from '@modules/appointments/dtos/IFindAllInMonthProviderDTO';
 import IFindAllInDayProviderDTO from '@modules/appointments/dtos/IFindAllInDayProviderDTO';
@@ -57,8 +55,9 @@ class AppointmentsRepository implements IAppointmentsRepository {
       where: {
         provider_id,
         day,
-        date: Raw(dateFieldName =>
-          `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${paserDay}-${paserMonth}_${year}'`,
+        date: Raw(
+          dateFieldName =>
+            `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${paserDay}-${paserMonth}_${year}'`,
         ),
       },
     })
@@ -74,7 +73,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     const appointment = this.ormRepository.create({
       provider_id,
       user_id,
-      date
+      date,
     });
     //realizando a operação de save() do typeorm
     await this.ormRepository.save(appointment);
