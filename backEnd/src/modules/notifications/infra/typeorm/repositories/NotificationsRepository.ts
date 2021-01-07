@@ -3,19 +3,19 @@ import { getMongoRepository, MongoRepository } from 'typeorm';
 //fazendo a importação da interface appointamentsRepositoty
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import ICreateNotificationDTO from '@modules/notifications/dtos/ICreateNotificationDTO';
-import Notifications from '@modules/notifications/infra/schemas/Notifications';
+import Notification from '@modules/notifications/infra/schemas/Notification';
 
 class NotificationsRepository implements INotificationsRepository {
   //criando uma variável para Repository
-  private ormRepository: MongoRepository<Notifications>;
+  private ormRepository: MongoRepository<Notification>;
   constructor() {
-    this.ormRepository = getMongoRepository(Notifications, 'mongo')
+    this.ormRepository = getMongoRepository(Notification, 'mongo')
   }
 
   public async create({
     content,
     recipient_id,
-  }: ICreateNotificationDTO ): Promise<Notifications>{
+  }: ICreateNotificationDTO ): Promise<Notification>{
     const notification = this.ormRepository.create({
       content,
       recipient_id,

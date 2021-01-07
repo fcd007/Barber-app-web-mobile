@@ -1,6 +1,6 @@
 import ICreateNotificationDTO from "../dtos/ICreateNotificationDTO";
-import Notification from '@modules/notifications/infra/schemas/Notifications';
+import Notifications from '@modules/notifications/infra/schemas/Notification';
 
 export default interface INotificationsRepostitory {
-  create(data: ICreateNotificationDTO): Promise<Notification>;
+  create(data: ICreateNotificationDTO): Promise<Notifications>;
 }

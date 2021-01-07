@@ -13,7 +13,7 @@ describe('CreateAppoitment', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
     createAppoimentRepository = new CreateAppoitmentService(
-      fakeAppointmentsRepository,
+      fakeAppointmentsRepository, 
     );
   });
 
