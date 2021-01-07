@@ -2,18 +2,22 @@ import 'reflect-metadata';
 
 import AppError from '@shared/errors/AppError';
 
-import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
+import FakeAppointmentsRepository from '@modules/appointments/repositories/fakes/FakeAppointmentsRepository';
+import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
 import CreateAppoitmentService from './CreateAppointmentService';
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let createAppoimentRepository: CreateAppoitmentService;
+let fakeNotificationsRepository: FakeNotificationsRepository;
 
 //vamos categorizar os testes
 describe('CreateAppoitment', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    fakeNotificationsRepository = new FakeNotificationsRepository();
     createAppoimentRepository = new CreateAppoitmentService(
-      fakeAppointmentsRepository, 
+      fakeAppointmentsRepository,
+      fakeNotificationsRepository
     );
   });
 
