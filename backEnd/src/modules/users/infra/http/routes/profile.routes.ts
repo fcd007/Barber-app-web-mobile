@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
 
 import ProfileController from '@modules/users/infra/http/controllers/ProfileController';
 
@@ -9,7 +10,13 @@ const profileController = new ProfileController();
 
 profileRouter.use(ensureAutheticaded);
 
-profileRouter.get('/', profileController.show);
+profileRouter.get('/',
+  celebrate({
+    [Segments.BODY]: {
+      
+    },
+  }),
+profileController.show);
 profileRouter.put('/', profileController.update);
 
 export default profileRouter;
