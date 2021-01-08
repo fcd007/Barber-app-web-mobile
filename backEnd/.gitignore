@@ -11,6 +11,9 @@ vscode
 # testing
 /coverage
 
+# database
+ormconfig.json
+
 # production
 /build
 
