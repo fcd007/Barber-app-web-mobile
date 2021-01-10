@@ -6,7 +6,7 @@ import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailTemplateProvider from '../../MailTemplateProvider/models/IMailTemplateProvider';
 
 @injectable()
-export default class SESEmailProvider implements IMailProvider {
+export default class SESMailProvider implements IMailProvider {
   private client: Transporter;
 
   constructor(
@@ -20,6 +20,6 @@ export default class SESEmailProvider implements IMailProvider {
     from,
     templateData
   }: ISendMailDTO): Promise<void> {
-
+    console.log('Funcionou!');
   }
 }
