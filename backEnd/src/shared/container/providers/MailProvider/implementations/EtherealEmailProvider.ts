@@ -1,6 +1,8 @@
 import nodemailer, { Transporter } from 'nodemailer';
 import { inject, injectable } from 'tsyringe';
 
+import mailConfig from '@config/mail';
+
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailTemplateProvider from '../../MailTemplateProvider/models/IMailTemplateProvider';
@@ -29,10 +31,11 @@ export default class EtherealEmailProvider implements IMailProvider {
     )};
 
   public async sendMail({ to, subject, from, templateData }: ISendMailDTO): Promise<void> {
+    const { name, email } = mailConfig.defaults.from;
     const info = await this.client.sendMail({
         from: {
           name: from?.name || 'Development Dantas',
-          address: from?.name || 'fcd007@hotmail.com',
+          address: from?.name || 'noreply@cdantas.com.br',
         },
         to: {
           name: to.name,

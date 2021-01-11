@@ -21,8 +21,7 @@ container.registerSingleton<IMailTemplateProvider>(
   HandlebarsMailTemplateProvider,
   );
 
-
   container.registerInstance<IMailProvider>(
     'MailProvider',
-    mailConfig.driver !== 'ethereal' ? container.resolve(EtherealEmailProvider) : container.resolve(SESMailProvider)
+     mailConfig.driver !== 'ethereal' ? container.resolve(EtherealEmailProvider) : container.resolve(SESMailProvider)
   );
