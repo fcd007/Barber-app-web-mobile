@@ -5,7 +5,7 @@ import axios from 'axios';
 // Genymotion     = 'http://10.0.3.2:3333'
 // Android        = 'http://seu-ip:3333'
 const api = axios.create({
-  baseURL: 'http://10.0.2.2:3333'
+  baseURL: 'http://localhost:3333'
 });
 
 export default api;
